@@ -1,5 +1,4 @@
 <%if logged_in? %>
-  <%= link_to "Show user", user_path(id: current_user.user_name), class: "btn btn-secondary"%>
   <%= render current_user %>
 <%else %>
   <section class="call_to_action">

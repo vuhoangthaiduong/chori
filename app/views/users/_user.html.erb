@@ -1,5 +1,13 @@
-<li>
-  <%= user.first_name %>
-  <%= user.last_name %>
-  <%= user.email %>
-</li>
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    <%= user.first_name %>
+    <%= user.last_name %>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Username: <%= user.user_name %></li>
+    <li class="list-group-item">Email: <%= user.email %></li>
+  </ul>
+  <div class="card-body">
+    <%= link_to "Go to profile",user_path(user), class: 'card-link'%>
+  </div>
+</div>
