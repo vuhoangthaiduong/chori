@@ -1,11 +1,21 @@
-<!-- Navigation -->
-<nav class="navbar navbar-light bg-light static-top">
-  <div class="container">
-    <%= link_to "Chori", root_path, class:"navbar-brand" %>
-    <%if !logged_in? %>
-      <%= link_to "Log in", login_path, class:"btn btn-primary"%>
-    <%else %>
-      <%= link_to "Log out", logout_path, class:"btn btn-primary", method: :delete%>
-    <%end %>
-  </div>
+<nav class="navbar navbar-light fixed-top bg-light flex-md-nowrap p-0 shadow">
+  <%= link_to "CHORI", root_path, class: "navbar-brand text-light d-sm-none d-md-block col-md-2 mr-0" %>
+  <input class="form-control w-50 rounded text-center" type="text" placeholder="Search recipes..." aria-label="Search">
+  <% if logged_in? %>
+    <li class="nav-item dropdown">
+      <button class="btn btn-light dropdown-toggle" type="button"
+              id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%=current_user.user_name %>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right m-1" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Account settings</a>
+        <a class="dropdown-item" href="#">Placeholder</a>
+        <div class="dropdown-divider"></div>
+        <%= link_to "Log out", logout_path, class: "dropdown-item", method: :delete %>
+      </div>
+    </li>
+    </li>
+  <%else %>
+    <%= link_to "Log in", login_path, class: "btn btn-primary mx-1 mr-2"%>
+  <% end %>
 </nav>
