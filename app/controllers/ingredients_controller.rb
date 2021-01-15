@@ -1,7 +1,8 @@
 class IngredientsController < ApplicationController
 
   def index
-    @ingredients = current_user.ingredients
+    @all_ingredients = Ingredient.all
+    @my_ingredients = current_user.ingredients
   end
 
   def show
@@ -12,7 +13,7 @@ class IngredientsController < ApplicationController
   end
 
   def create
-    @ingredient = User.ingredients.build(ingredient_params)
+    @ingredient = Ingredient.new(ingredient_params)
     if @ingredient.save
       render 'index'
     else

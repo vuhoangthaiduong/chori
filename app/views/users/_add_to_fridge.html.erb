@@ -1,0 +1,4 @@
+<%= form_for(current_user.ingredients_users.build , class: "p-2", remote: true) do |f| %>
+    <div><%= hidden_field_tag :ingredient_id, ingredient.id %></div>
+    <%= f.submit "Add", class: "btn btn-link" %>
+<% end %>

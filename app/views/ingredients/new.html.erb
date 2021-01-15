@@ -1,0 +1,12 @@
+<section class = "justify-content-center m-5">
+  <h1 class="text-center">Add ingredients to my fridge</h1>
+  <%= form_for(@ingredient, class: 'login-form') do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.label :info %>
+    <%= f.text_field :info, class: 'form-control' %>
+    <%= f.label :group %>
+    <%= f.text_field :group, class: 'form-control' %>
+    <%= f.submit "Add", class: "btn btn-primary my-2" %>
+  <% end %>
+</section>
