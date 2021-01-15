@@ -1,5 +1,5 @@
 <%if logged_in? %>
-  <%= render current_user %>
+  <h2>Hello, <%= current_user.user_name %> :)</h2>
 <%else %>
   <section class="call_to_action">
     <%= render 'call_to_action' %>

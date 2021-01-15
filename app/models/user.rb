@@ -2,8 +2,13 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :user_name, use: [:slugged, :finders]
 
-  has_many :ingredients
+  has_many :ingredients_users, class_name: "IngredientsUsers",
+           foreign_key: "user_id"
+  has_many :ingredients, through: :ingredients_users
+
   has_many :recipes
+
+  attribute :admin, :boolean, default: 'false'
 
   before_save { email.downcase! }
   validates :first_name, presence: true, length: { maximum: 50 }

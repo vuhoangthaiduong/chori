@@ -31,7 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bootstrap-sass', '3.4.1'
 gem 'bootstrap', '~> 4.3.1'
 gem 'friendly_id', '~> 5.4.0'
-
+gem 'faker', '2.15.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
