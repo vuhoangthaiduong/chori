@@ -2,6 +2,8 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :user_name, use: [:slugged, :finders]
 
+  attr_accessor :slug
+
   has_many :ingredients_users, class_name: "IngredientsUser",
            foreign_key: "user_id"
   has_many :ingredients, through: :ingredients_users

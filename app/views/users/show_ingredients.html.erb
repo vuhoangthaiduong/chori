@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-between align-items-center">
+  <p class="h1">My ingredients (<%= @ingredients.length %>)</p>
+  <%= link_to "All ingredients", ingredients_path, class: "btn btn-secondary" %>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    <table class="table table-striped mt-3">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @ingredients.each do |ingredient| %>
+        <tr>
+          <td><%= ingredient.id %></td>
+          <td><%= ingredient.name %></td>
+          <td><%= IngredientsUser.find_by(user_id: current_user.id,
+                                          ingredient_id: ingredient.id).amount %></td>
+          <td><%= button_to IngredientsUser.find_by(user_id: current_user.id,
+                                                    ingredient_id: ingredient.id), method: :delete,
+                            remote: true, class: "btn btn-default" do %>
+              <span class="fas fa-trash"></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-end align-items-center">
+      <td><%= link_to "Add new ingredient to fridge", ingredients_path, class: "btn btn-primary" %></td>
+    </div>
+  </div>
+
+  <!--  All ingredients-->
+  <div class="col-6">
+    <ul class="list-group list-group mt-3">
+      <% @all_ingredients.each do |ingredient| %>
+        <li class="list-group-item">
+          <%= link_to ingredient.name, ingredient %>
+          <%= button_to current_user.ingredients_users.build, remote: true,
+                        class: "btn btn-default" do %>
+            <div><%= hidden_field_tag :ingredient_id, ingredient.id %></div>
+            <span class="fas fa-plus"></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+
+</div>
