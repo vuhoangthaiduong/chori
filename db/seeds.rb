@@ -1,18 +1,12 @@
 require 'faker'
 
-20.times do
-  first_name = Faker::Lorem.unique.word
-  last_name = Faker::Lorem.unique.word
-  puts first_name.concat(last_name)
-  User.create!(
-    first_name: first_name,
-    last_name: last_name,
-    user_name: first_name.concat(last_name),
-    email: first_name.concat(last_name) + "@gmail.com",
-    password: "abcdef",
-    password_confirmation: "abcdef",
-    gender: "female")
-end
+User.create!(
+  first_name: "thai",
+  last_name: "duong",
+  user_name: first_name.concat(last_name),
+  email: first_name.concat(last_name) + "@gmail.com",
+  password: "abcdef",
+  password_confirmation: "abcdef")
 
 50.times do
   name = Faker::Food.dish

@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   extend FriendlyId
-  friendly_id :user_name, use: [:slugged, :finders]
+  friendly_id :user_name, use: %i[slugged finders]
 
   has_many :ingredients_users, class_name: "IngredientsUser",
-           foreign_key: "user_id"
+                               foreign_key: "user_id"
   has_many :ingredients, through: :ingredients_users
 
   has_many :recipes
@@ -23,5 +23,9 @@ class User < ApplicationRecord
                     uniqueness: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+
+  def has_in_fridge? ingredient
+    ingredients.include?(ingredient)
+  end
 
 end

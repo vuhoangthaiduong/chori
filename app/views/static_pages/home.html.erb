@@ -1,7 +1,9 @@
-<%if logged_in? %>
+<% if logged_in? %>
   <h2>Hello, <%= current_user.user_name %> :)</h2>
-<%else %>
+
+  </div>
+<% else %>
   <section class="call_to_action">
     <%= render 'call_to_action' %>
   </section>
-<%end %>
+<% end %>

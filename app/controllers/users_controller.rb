@@ -34,18 +34,6 @@ class UsersController < ApplicationController
 
   end
 
-  def ingredients
-    @ingredients = current_user.ingredients
-  end
-
-  def recipes
-    @recipes = current_user.recipes
-  end
-
-  def has_in_fridge? ingredient
-    ingredients.include?(ingredient)
-  end
-
   private
 
   def user_params

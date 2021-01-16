@@ -1,75 +1,52 @@
-<nav class="d-sm-none d-md-block col-md-2 mr-0 sidebar">
-  <div class="sidebar-sticky">
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="home"></span>
-          Dashboard <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= users_path %>">
-          <span data-feather="users"></span>
-          Users
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href= <%= ingredients_path %>>
-          <span data-feather="layers"></span>
-          My fridge
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href= <%= recipes_path %>>
-          <span data-feather="file"></span>
-          Recipes
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="shopping-cart"></span>
-          My cart
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="bar-chart-2"></span>
-          Reports
-        </a>
-      </li>
-    </ul>
-
-    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-      <span>Saved reports</span>
-      <a class="d-flex align-items-center text-muted" href="#">
-        <span data-feather="plus-circle"></span>
-      </a>
-    </h6>
-    <ul class="nav flex-column mb-2">
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file-text"></span>
-          Current month
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file-text"></span>
-          Last quarter
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file-text"></span>
-          Social engagement
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file-text"></span>
-          Year-end sale
-        </a>
-      </li>
-    </ul>
+<aside>
+  <div class="side-inner">
+    <div class="logo-wrap">
+      <div class="logo">
+        <span>C</span>
+      </div>
+      <span class="logo-text">Chori</span>
+    </div>
+    <div class="search-form">
+      <form action="#">
+<span class="wrap-icon">
+<span class="fas fa-search"></span>
+</span>
+        <input type="text" class="form-control" placeholder="Search...">
+      </form>
+    </div>
+    <div class="nav-menu">
+      <ul>
+        <li class="active">
+          <%= link_to root_path, class: "d-flex align-items-center" do %>
+            <span class="wrap-icon fas fa-home mr-3"></span><span class="menu-text">Home</span>
+          <% end %>
+        </li>
+        <li>
+          <% if logged_in? %>
+            <%= link_to user_show_ingredients_user_path(current_user), class: "d-flex align-items-center" do %>
+              <span class="wrap-icon fas fa-lemon mr-3"></span><span class="menu-text">My fridge</span>
+            <% end %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to recipes_path, class: "d-flex align-items-center" do %>
+            <span class="wrap-icon fas fa-book mr-3"></span><span class="menu-text">Browse recipes</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#", class: "d-flex align-items-center" do %>
+            <span class="wrap-icon fas fa-shopping-cart mr-3"></span><span class="menu-text">Cart</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to users_path, class: "d-flex align-items-center" do %>
+            <span class="wrap-icon fas fa-chart-pie mr-3"></span><span class="menu-text">Users</span>
+          <% end %>
+        </li>
+        <li>
+          <a href="#" class="d-flex align-items-center"><span class="wrap-icon fas fa-cog mr-3"></span><span class="menu-text">Settings</span></a>
+        </li>
+      </ul>
+    </div>
   </div>
-</nav>
+</aside>

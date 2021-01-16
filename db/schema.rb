@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_15_100037) do
+ActiveRecord::Schema.define(version: 2021_01_16_070230) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -59,9 +59,14 @@ ActiveRecord::Schema.define(version: 2021_01_15_100037) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ingredients_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "ingredient_id", null: false
+  create_table "ingredients_users", force: :cascade do |t|
+    t.integer "users_id", null: false
+    t.integer "ingredients_id", null: false
+    t.integer "amount", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ingredients_id"], name: "index_ingredients_users_on_ingredients_id"
+    t.index ["users_id"], name: "index_ingredients_users_on_users_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -76,20 +81,18 @@ ActiveRecord::Schema.define(version: 2021_01_15_100037) do
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "user_name"
     t.string "email"
-    t.date "date_of_birth"
-    t.string "gender"
-    t.string "bio"
-    t.string "rank"
+    t.string "password"
+    t.boolean "admin"
+    t.datetime "date_of_birth"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
-    t.string "remember_digest"
-    t.string "user_name"
-    t.string "slug"
-    t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "ingredients_users", "ingredients", column: "ingredients_id"
+  add_foreign_key "ingredients_users", "users", column: "users_id"
 end
