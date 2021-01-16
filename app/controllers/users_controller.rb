@@ -42,8 +42,8 @@ class UsersController < ApplicationController
     @recipes = current_user.recipes
   end
 
-  def has_in_fridge? ingredient
-    ingredients.include?(ingredient)
+  def in_fridge? ingredient
+    ingredients.include? ingredient
   end
 
   private
