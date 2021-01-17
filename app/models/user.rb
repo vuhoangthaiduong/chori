@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   extend FriendlyId
-  friendly_id :user_name, use: [:slugged, :finders]
+  friendly_id :user_name, use: %i[slugged finders]
 
   attr_accessor :slug
 
   has_many :ingredients_users, class_name: "IngredientsUser",
-           foreign_key: "user_id"
+                               foreign_key: "user_id", dependent: :destroy
   has_many :ingredients, through: :ingredients_users
 
   has_many :recipes

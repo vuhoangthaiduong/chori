@@ -1,6 +1,6 @@
 class Ingredient < ApplicationRecord
   has_many :ingredients_users, class_name: "IngredientsUser",
-           foreign_key: "ingredient_id"
+           foreign_key: "ingredient_id", dependent: :destroy
   has_many :users, through: :ingredients_users
   has_many :recipes
   validates :name, presence: true,

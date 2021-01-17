@@ -1,5 +1,8 @@
 <div class="d-flex justify-content-between align-items-center">
-  <p class="h1">My ingredients (<%= @ingredients.length %>)</p>
+  <div>
+    <span class="fas fa-lemon function-icon"></span>
+    <span class="h1 px-1">My fridge (<%= @ingredients.length %>)</span>
+  </div>
   <%= link_to "All ingredients", ingredients_path, class: "btn btn-secondary" %>
 </div>
 
@@ -17,29 +20,36 @@
 
       <tbody>
       <% @ingredients.each do |ingredient| %>
+        <% record = IngredientsUser.find_by(user_id: current_user.id,
+                                            ingredient_id: ingredient.id) %>
         <tr>
-          <td><%= ingredient.id %></td>
+          <td><%= record.id %></td>
           <td><%= ingredient.name %></td>
-          <td><%= IngredientsUser.find_by(user_id: current_user.id,
-                                          ingredient_id: ingredient.id).amount %></td>
-          <td><%= button_to IngredientsUser.find_by(user_id: current_user.id,
-                                                    ingredient_id: ingredient.id), method: :delete,
-                            remote: true, class: "btn btn-default" do %>
+          <td><%= record.amount %></td>
+          <td class="d-flex flex-row">
+            <span><%= button_to record, remote: true, class: "btn btn-default" do %>
+              <span class="fas fa-plus"></span>
+            <% end %>
+            </span>
+            <span><%= button_to record, remote: true, class: "btn btn-default" do %>
+              <span class="fas fa-minus"></span>
+            <% end %>
+            </span>
+            <span><%= button_to record, method: :delete,
+                                remote: true, class: "btn btn-default" do %>
               <span class="fas fa-trash"></span>
             <% end %>
+            </span>
           </td>
         </tr>
       <% end %>
       </tbody>
     </table>
-    <div class="d-flex justify-content-end align-items-center">
-      <td><%= link_to "Add new ingredient to fridge", ingredients_path, class: "btn btn-primary" %></td>
-    </div>
   </div>
 
   <!--  All ingredients-->
-  <div class="col-6">
-    <ul class="list-group list-group mt-3">
+  <div class="col-6 vh-100 ">
+    <ul class="list-group list-group mt-3 h-75 overflow-auto">
       <% @all_ingredients.each do |ingredient| %>
         <li class="list-group-item">
           <%= link_to ingredient.name, ingredient %>
