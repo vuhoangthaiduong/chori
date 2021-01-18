@@ -23,4 +23,6 @@ class IngredientsUsersController < ApplicationController
     redirect_to user_show_ingredients_user_path(current_user.id)
   end
 
+
+
 end

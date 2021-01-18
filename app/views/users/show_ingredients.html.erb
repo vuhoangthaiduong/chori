@@ -19,22 +19,23 @@
       </thead>
 
       <tbody>
+      <% i = 0 %>
       <% @ingredients.each do |ingredient| %>
         <% record = IngredientsUser.find_by(user_id: current_user.id,
                                             ingredient_id: ingredient.id) %>
         <tr>
-          <td><%= record.id %></td>
+          <td><%= i += 1 %></td>
           <td><%= ingredient.name %></td>
           <td><%= record.amount %></td>
           <td class="d-flex flex-row">
-            <span><%= button_to record, remote: true, class: "btn btn-default" do %>
-              <span class="fas fa-plus"></span>
-            <% end %>
-            </span>
-            <span><%= button_to record, remote: true, class: "btn btn-default" do %>
-              <span class="fas fa-minus"></span>
-            <% end %>
-            </span>
+            <!--            <span><%#= button_to record, remote: true, class: "btn btn-default" do %>-->
+            <!--              <span class="fas fa-plus"></span>-->
+            <%# end %>
+            <!--            </span>-->
+            <!--            <span><%#= button_to record, remote: true, class: "btn btn-default" do %>-->
+            <!--              <span class="fas fa-minus"></span>-->
+            <%# end %>
+            <!--            </span>-->
             <span><%= button_to record, method: :delete,
                                 remote: true, class: "btn btn-default" do %>
               <span class="fas fa-trash"></span>
@@ -51,7 +52,7 @@
   <div class="col-6 vh-100 ">
     <ul class="list-group list-group mt-3 h-75 overflow-auto">
       <% @all_ingredients.each do |ingredient| %>
-        <li class="list-group-item">
+        <li class="list-group-item d-flex justify-content-between">
           <%= link_to ingredient.name, ingredient %>
           <%= button_to current_user.ingredients_users.build, remote: true,
                         class: "btn btn-default" do %>
