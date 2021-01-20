@@ -26,21 +26,33 @@
         <tr>
           <td><%= i += 1 %></td>
           <td><%= ingredient.name %></td>
-          <td><%= record.amount %></td>
           <td class="d-flex flex-row">
-            <!--            <span><%#= button_to record, remote: true, class: "btn btn-default" do %>-->
-            <!--              <span class="fas fa-plus"></span>-->
-            <%# end %>
-            <!--            </span>-->
-            <!--            <span><%#= button_to record, remote: true, class: "btn btn-default" do %>-->
-            <!--              <span class="fas fa-minus"></span>-->
-            <%# end %>
-            <!--            </span>-->
+            <span><%= form_for record, remote: true do |f| %>
+                <%= f.hidden_field :amount, value: record.amount.to_i + 1 %>
+                <%= button_tag type: 'submit', class: "btn btn-default" do %>
+                  <i class="fa fa-plus"></i>
+                <% end %>
+            <% end %>
+            </span>
+
+            <%= record.amount %>
+            <% if record.amount != 0 %>
+            <span><%= form_for record, remote: true do |f| %>
+                <%= f.hidden_field :amount, value: record.amount.to_i - 1 %>
+                <%= button_tag type: 'submit', class: "btn btn-default" do %>
+                  <i class="fa fa-minus"></i>
+                <% end %>
+            <% end %>
+            </span>
+            <% end %>
+          </td>
+          <td>
             <span><%= button_to record, method: :delete,
                                 remote: true, class: "btn btn-default" do %>
               <span class="fas fa-trash"></span>
             <% end %>
             </span>
+
           </td>
         </tr>
       <% end %>

@@ -9,30 +9,67 @@
   <% end %>
 </div>
 
-<table class = "table mt-3">
-  <thead class="thead-dark">
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Name</th>
-    <th scope="col">Info</th>
-    <th scope="col">Instruction</th>
-    <th scope="col">Actions</th>
-  </tr>
-  </thead>
+<!--<table class="table table-striped mt-3">-->
+<!--  <thead class="thead-dark">-->
+<!--  <tr>-->
+<!--    <th scope="col">#</th>-->
+<!--    <th scope="col">Name</th>-->
+<!--    <th scope="col">Info</th>-->
+<!--    <th scope="col">Ingredients</th>-->
+<!--    <th scope="col">Instruction</th>-->
+<!--        <th scope="col">Actions</th>-->
+<!--  </tr>-->
+<!--  </thead>-->
 
-  <tbody>
-  <% @recipes.each do |recipe| %>
-    <tr>
-      <td><%= recipe.id %></td>
-      <td><%= recipe.name %></td>
-      <td><%= recipe.info %></td>
-      <td><%= recipe.instruction %></td>
-      <td class="d-flex flex-row justify-content-left align-items-center">
-        <%= link_to "Show", recipe , class: "p-2"%>
-        <%= link_to "Edit", edit_recipe_path(recipe) , class: "p-2"%>
-        <%= link_to "Destroy", recipe, class: "p-2", method: :delete, data: { confirm: "Are you sure?" } %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<!--  <tbody>-->
+<%# @recipes.each do |recipe| %>
+<!--    <tr>-->
+<!--      <td><%#= recipe.id %></td>-->
+<!--      <td><%#= recipe.name %></td>-->
+<!--      <td><%#= recipe.info %></td>-->
+<!--      <td class="w-25">-->
+<!--        <ul>-->
+<%# recipe.ingredients.each do |ingredient| %>
+<!--            <li><%#= "#{ingredient.name} (#{recipe.ingredients_recipes.find_by(ingredient_id: ingredient.id).amount})" %></li>-->
+<%# end %>
+<!--        </ul>-->
+<!--      </td>-->
+<!--      <td><%#= recipe.instruction %></td>-->
+<!--            <td class="d-flex flex-row justify-content-left align-items-center">-->
+<%#= link_to "Show", recipe, class: "p-2" %>
+<%#= link_to "Edit", edit_recipe_path(recipe), class: "p-2" %>
+<%#= link_to "Destroy", recipe, class: "p-2", method: :delete, data: { confirm: "Are you sure?" } %>
+<!--            </td>-->
+<!--    </tr>-->
+<%# end %>
+<!--  </tbody>-->
+<!--</table>-->
+
+<div class="container mt-3">
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+      <div class="col m-2">
+        <div class="card" style="width: 18rem;">
+          <!--          <img class="card-img-top" src="./app/assets/images/bg-masthead.jpg" alt="Card image cap">-->
+          <div class="card-body">
+            <h5 class="card-title"><%= recipe.name %></h5>
+            <p class="card-text"><%= recipe.info %></p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <% length = recipe.ingredients.length %>
+            <% for i in 0...length %>
+              <% ingredient = recipe.ingredients[i] %>
+              <li class="list-group-item"><%= "#{ingredient.name} (#{recipe.ingredients_recipes.find_by(ingredient_id: ingredient.id).amount})" %></li>
+              <% if i == 2
+                   break %>
+              <% end %>
+            <% end %>
+          </ul>
+          <div class="card-body">
+            <%= link_to "See details", recipe_path(recipe.id), class: "card-link" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

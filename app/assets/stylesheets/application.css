@@ -272,3 +272,16 @@ main .post-content .post-meta {
     font-size: 1.5em;
     text-shadow: 1px 1px 1px #ccc;
 }
+
+.card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+    transition: .2s all;
+}
+
+.card::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: lawngreen;
+}

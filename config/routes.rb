@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   end
   resources :recipes
   resources :ingredients
-  resources :ingredients_users, only: %i[create destroy]
+  resources :ingredients_users, only: %i[create update destroy]
 
 end

@@ -14,26 +14,33 @@ require 'faker'
 #     gender: "female")
 # end
 
-50.times do
-  name = Faker::Food.dish
-  info = Faker::Lorem.paragraph
-  instruction = Faker::Food.description
-  difficulty = rand(1..5)
-  Recipe.create!(
-    name: name,
-    info: info,
-    instruction: instruction,
-    difficulty: difficulty
-  )
-end
+# 50.times do
+#   name = Faker::Food.dish
+#   info = Faker::Lorem.paragraph
+#   instruction = Faker::Food.description
+#   difficulty = rand(1..5)
+#   Recipe.create!(
+#     name: name,
+#     info: info,
+#     instruction: instruction,
+#     difficulty: difficulty
+#   )
+# end
+#
+# 100.times do
+#   name = Faker::Food.ingredient
+#   info = Faker::Lorem.paragraph
+#   group = Faker::Lorem.word
+#   Ingredient.create!(
+#     name: name,
+#     info: info,
+#     group: group
+#   )
+# end
+#
 
-100.times do
-  name = Faker::Food.ingredient
-  info = Faker::Lorem.paragraph
-  group = Faker::Lorem.word
-  Ingredient.create!(
-    name: name,
-    info: info,
-    group: group
-  )
+200.times do
+  ingredient_offset = rand(Ingredient.count)
+  recipe_offset = rand(Recipe.count)
+  Recipe.offset(recipe_offset).first.ingredients << Ingredient.offset(ingredient_offset).first
 end

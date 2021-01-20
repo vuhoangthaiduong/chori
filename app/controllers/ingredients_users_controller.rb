@@ -2,7 +2,7 @@ class IngredientsUsersController < ApplicationController
 
   def show_ingredients
     @ingredients = current_user.ingredients
-    @all_ingredients = Ingredient.all
+    @all_ingredients = Ingredient.ordered_by_name.all
     render 'users/show_ingredients'
   end
 
@@ -17,12 +17,21 @@ class IngredientsUsersController < ApplicationController
     redirect_to user_show_ingredients_user_path(current_user.id)
   end
 
+  def update
+    record = IngredientsUser.find(params[:id])
+    # byebug
+    record.update(amount: params[:ingredients_user][:amount])
+    redirect_to user_show_ingredients_user_path(current_user.id)
+  end
+
   def destroy
     ingredient = IngredientsUser.find(params[:id]).ingredient
     current_user.ingredients.delete(ingredient)
     redirect_to user_show_ingredients_user_path(current_user.id)
   end
 
-
+  def ingredients_user_params
+    params.require(:ingredients_user).permit(:amount)
+  end
 
 end
