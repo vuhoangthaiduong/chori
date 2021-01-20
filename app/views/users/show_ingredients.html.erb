@@ -6,8 +6,16 @@
   <%= link_to "All ingredients", ingredients_path, class: "btn btn-secondary" %>
 </div>
 
-<div class="row">
+<div class="row mt-5">
   <div class="col-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search ingredients">
+      <div class="input-group-append">
+        <button class="btn btn-secondary" type="button">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </div>
     <table class="table table-striped mt-3">
       <thead class="thead-dark">
       <tr>
@@ -61,8 +69,8 @@
   </div>
 
   <!--  All ingredients-->
-  <div class="col-6 vh-100 ">
-    <ul class="list-group list-group mt-3 h-75 overflow-auto">
+  <div class="col-6 vh-100">
+    <ul class="list-group list-group h-75 overflow-auto">
       <% @all_ingredients.each do |ingredient| %>
         <li class="list-group-item d-flex justify-content-between">
           <%= link_to ingredient.name, ingredient %>

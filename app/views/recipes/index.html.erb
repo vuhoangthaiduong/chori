@@ -1,7 +1,12 @@
-<div class="d-flex justify-content-between align-items-center">
+<div class="jumbotron jumbotron-fluid jumbotron-image">
+  <div class="container">
+    <h1 class="display-4">Don't know yet what to make today?</h1>
+    <p class="lead text-dark">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  </div>
+</div><div class="d-flex justify-content-between align-items-center">
   <div>
     <span class="fas fa-book function-icon"></span>
-    <span class="h1">All recipes (<%= @recipes.length %>)</span>
+    <span class="h1">Browse recipes (<%= @recipes.length %>)</span>
   </div>
   <%= link_to new_recipe_path, class: "btn btn-primary" do %>
     <i class="fa fa-plus" aria-hidden="true"></i>
@@ -46,30 +51,20 @@
 <!--</table>-->
 
 <div class="container mt-3">
-  <div class="row">
+  <div class="masonry">
     <% @recipes.each do |recipe| %>
-      <div class="col m-2">
-        <div class="card" style="width: 18rem;">
-          <!--          <img class="card-img-top" src="./app/assets/images/bg-masthead.jpg" alt="Card image cap">-->
+      <a href="" class="item">
+        <div class="card">
+          <div class="card-img-top image-box">
+            <img src="https://source.unsplash.com/random/500x200?food,drink&sig=<%= rand(1..@recipes.length) %>>" alt=""/>
+          </div>
           <div class="card-body">
             <h5 class="card-title"><%= recipe.name %></h5>
-            <p class="card-text"><%= recipe.info %></p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <% length = recipe.ingredients.length %>
-            <% for i in 0...length %>
-              <% ingredient = recipe.ingredients[i] %>
-              <li class="list-group-item"><%= "#{ingredient.name} (#{recipe.ingredients_recipes.find_by(ingredient_id: ingredient.id).amount})" %></li>
-              <% if i == 2
-                   break %>
-              <% end %>
-            <% end %>
-          </ul>
-          <div class="card-body">
-            <%= link_to "See details", recipe_path(recipe.id), class: "card-link" %>
+            <div class="card-text"><%= recipe.info %></div>
+            <p class="card-text "><%= recipe.instruction %></p>
           </div>
         </div>
-      </div>
+      </a>
     <% end %>
   </div>
 </div>
