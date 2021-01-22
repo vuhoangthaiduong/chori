@@ -3,7 +3,8 @@
     <h1 class="display-4">Don't know yet what to make today?</h1>
     <p class="lead text-dark">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
   </div>
-</div><div class="d-flex justify-content-between align-items-center">
+</div>
+<div class="d-flex justify-content-between align-items-center m-3">
   <div>
     <span class="fas fa-book function-icon"></span>
     <span class="h1">Browse recipes (<%= @recipes.length %>)</span>
@@ -56,12 +57,19 @@
       <a href="" class="item">
         <div class="card">
           <div class="card-img-top image-box">
-            <img src="https://source.unsplash.com/random/500x200?food,drink&sig=<%= rand(1..@recipes.length) %>>" alt=""/>
+            <img src="https://source.unsplash.com/random/250x200?food,<%= recipe.name.partition(" ").first %>&sig=<%= rand(1..@recipes.length) %>>" alt=""/>
           </div>
           <div class="card-body">
             <h5 class="card-title"><%= recipe.name %></h5>
-            <div class="card-text"><%= recipe.info %></div>
-            <p class="card-text "><%= recipe.instruction %></p>
+            <p class="card-text"><%= recipe.info %></p>
+            <div class="d-flex flex-row justify-content-between">
+              <div class=""><%= "By #{recipe.author.user_name}" %></div>
+              <div class="">
+                <% recipe.difficulty.to_i.times do %>
+                  <i class="fas fa-star text-warning"></i>
+              <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </a>

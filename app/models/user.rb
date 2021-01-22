@@ -8,7 +8,7 @@ class User < ApplicationRecord
                                foreign_key: "user_id", dependent: :destroy
   has_many :ingredients, through: :ingredients_users
 
-  has_many :recipes
+  has_many :recipes, dependent: :destroy, foreign_key: "author_id"
 
   attribute :admin, :boolean, default: 'false'
 

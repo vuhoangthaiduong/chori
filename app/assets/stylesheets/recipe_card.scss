@@ -1,14 +1,15 @@
 .masonry { /* Masonry container */
-  column-count: 3;
+  column-count: 4;
   column-gap: 1em;
 }
 
 .item { /* Masonry bricks or child elements */
-  background-color: #eee;
+  //background-color: #eee;
   display: inline-block;
   margin: 0 0 1em;
   width: 100%;
 }
+
 a {
   text-decoration: none;
   outline: none;
@@ -17,7 +18,7 @@ a {
 .card .image-box {
   background: #ffffff;
   overflow: hidden;
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.50);
+  //box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.50);
   border-radius: 5px;
 }
 
@@ -47,12 +48,12 @@ a {
   -ms-transition: all 0.2s ease-in;
   -o-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
-  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.40);
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.20);
 }
 
 .card:hover {
   background: #fff;
-  box-shadow: 0px 15px 26px rgba(0, 0, 0, 0.50);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.40);
   -webkit-transition: all 0.2s ease-in;
   -moz-transition: all 0.2s ease-in;
   -ms-transition: all 0.2s ease-in;
@@ -67,4 +68,8 @@ a {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+.card-title {
+  color: tomato;
 }

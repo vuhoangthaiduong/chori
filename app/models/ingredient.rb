@@ -16,4 +16,13 @@ class Ingredient < ApplicationRecord
   scope :ordered_by_name, -> { order(name: :asc) }
 
 
+  def Ingredient.search(search_term)
+    if !search_term.nil?
+      where(["name LIKE ?","%#{search_term}%"])
+    else
+      all
+    end
+  end
+
+
 end

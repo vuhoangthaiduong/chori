@@ -1,7 +1,7 @@
 class IngredientsController < ApplicationController
 
   def index
-    @all_ingredients = Ingredient.ordered_by_name.all
+    @all_ingredients = Ingredient.ordered_by_name.search(params[:search])
     @my_ingredients = current_user.ingredients
   end
 
